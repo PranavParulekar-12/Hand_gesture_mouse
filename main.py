@@ -3,15 +3,14 @@ import mediapipe
 import pyautogui
 import time
 
-# Initialize MediaPipe Hands and drawing utilities
 capture_hands = mediapipe.solutions.hands.Hands()
 drawing_option = mediapipe.solutions.drawing_utils
 
 screen_width, screen_height = pyautogui.size()
 
-camera = cv2.VideoCapture(1)  # Use 0 as that works for you
+camera = cv2.VideoCapture(1)  #select input camera
 
-# Set camera properties for FPS and resolution (may or may not work depending on your camera)
+# Set camera properties for FPS and resolution 
 camera.set(cv2.CAP_PROP_FPS, 60)
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -57,7 +56,7 @@ while True:
                     cv2.circle(image, (x, y), 10, (0, 255, 255), -1)
 
         dist = abs(y2 - y1)
-        #print(dist)  # Comment out to improve performance
+        #print(dist)  
 
         # Click if distance is less than threshold and cooldown passed
         if dist < 40 and (time.time() - last_click_time) > click_cooldown:
